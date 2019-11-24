@@ -34,7 +34,13 @@ namespace RZNU_Rest.Persistence.Contexts
             builder.Entity<Product>().HasKey(p => p.Id);
             builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
-            
+
+            builder.Entity<Product>().HasData(
+                new Product { Id = 100, Name = "Apple", CategoryId = 400},
+                new Product { Id = 101, Name ="Pear", CategoryId = 400},
+                new Product { Id = 200, Name = "Milk", CategoryId = 440}
+
+                );
 
         }
     }
