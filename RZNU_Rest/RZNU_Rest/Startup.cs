@@ -37,7 +37,7 @@ namespace RZNU_Rest
                 options.UseInMemoryDatabase("supermarket-api-in-memory");
             });
 
-            services.AddScoped<ICategoryRepository, Repositories.CategoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<ICategoryService, CategoryService>();

@@ -29,5 +29,35 @@ namespace RZNU_Rest.Controllers
             var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
             return resources;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync(int id, [FromBody] SaveProductResource resource) {
+            var product = _mapper.Map<SaveProductResource, Product>(resource);
+            var result = await _productService.UpdateAsync(id, product);
+
+            if (!result.Success) { return BadRequest(result.Message); }
+
+            var productResource = _mapper.Map<Product, ProductResource>(result.Resource);
+            return Ok(productResource);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource) {
+            var product = _mapper.Map<SaveProductResource, Product>(resource);
+            var result = await _productService.UpdateAsync(id, product);
+            if (!result.Success) return BadRequest(result.Message);
+
+            var productResource = _mapper.Map<Product, ProductResource>(result.Resource);
+            return Ok(productResource);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id) {
+            var result = await _productService.DeleteAsync(id);
+            if (!result.Success) return BadRequest(result.Message);
+
+            var categoryResource = _mapper.Map<Product, ProductResource>(result.Resource);
+            return Ok(categoryResource);
+        }
     }
 }

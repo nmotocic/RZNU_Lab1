@@ -12,6 +12,7 @@ namespace RZNU_Rest.Mapping
     {
         public ResourceToModelProfile() {
             CreateMap<SaveCategoryResource, Category>();
+            CreateMap<SaveProductResource, Product>();
         }
     }
 }
