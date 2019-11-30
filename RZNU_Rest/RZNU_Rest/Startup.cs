@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +18,8 @@ using RZNU_Rest.Persistence.Contexts;
 using RZNU_Rest.Persistence.Repositories;
 using RZNU_Rest.Repositories;
 using RZNU_Rest.Services;
+using Swashbuckle.AspNetCore.Swagger;
+
 
 namespace RZNU_Rest
 {
@@ -35,6 +39,15 @@ namespace RZNU_Rest
 
             services.AddDbContext<AppDbContext>(options => {
                 options.UseInMemoryDatabase("supermarket-api-in-memory");
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My Api", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -63,6 +76,14 @@ namespace RZNU_Rest
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Api V1");
+                
+            });
+
+
         }
     }
 }

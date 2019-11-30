@@ -13,6 +13,8 @@ using RZNU_Rest.Extensions;
 namespace RZNU_Rest.Controllers
 {
     [Route("api/[controller]")]
+    [Route("/api/categories")]
+    [Produces("application/json")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -24,6 +26,10 @@ namespace RZNU_Rest.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Lists all existing categories.
+        /// </summary>
+        /// <returns>List of categories.</returns>
         [HttpGet]
         public async Task<IEnumerable<CategoryResource>> GetAllAsync() {
             var categories = await _categoryService.ListAsync();
@@ -31,6 +37,13 @@ namespace RZNU_Rest.Controllers
             return resources;
         }
 
+
+        /// <summary>
+        /// Saves a new product.
+        /// </summary>
+        /// <param name="id">Category identifier.</param>
+        /// <param name="resource">Category data.</param>
+        /// <returns>Response for the request.</returns>
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource) {
             if (!ModelState.IsValid) {
@@ -45,6 +58,13 @@ namespace RZNU_Rest.Controllers
             return Ok(categoryResource);
         }
 
+
+        /// <summary>
+        /// Updates an existing category according to an identifier.
+        /// </summary>
+        /// <param name="id">Category identifier.</param>
+        /// <param name="resource">Category data.</param>
+        /// <returns>Response for the request.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource) {
             if (!ModelState.IsValid) {
@@ -60,6 +80,11 @@ namespace RZNU_Rest.Controllers
                 return Ok(categoryResource);
         }
 
+        /// <summary>
+        /// Deletes a given category according to an identifier.
+        /// </summary>
+        /// <param name="id">Category identifier.</param>
+        /// <returns>Response for the request.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(int id) {
             var result = await _categoryService.DeleteAsync(id);
