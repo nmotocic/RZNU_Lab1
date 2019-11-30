@@ -29,6 +29,21 @@ namespace RZNU_Rest.Persistence.Repositories
             return await _context.Products.ToListAsync();
         }
 
+        public async Task<IEnumerable<Product>> ListAsync(int? categoryId)
+        {
+            var queryable = _context.Products
+                                    .Include(p => p.Category)
+                                    .AsNoTracking();
+
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                return await queryable.Where(p => p.CategoryId == categoryId)
+                                      .ToListAsync();
+            }
+
+            return await queryable.ToListAsync();
+        }
+
         public void Remove(Product product)
         {
             _context.Products.Remove(product);

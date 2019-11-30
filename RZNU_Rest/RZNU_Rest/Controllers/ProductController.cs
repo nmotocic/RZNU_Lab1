@@ -37,6 +37,13 @@ namespace RZNU_Rest.Controllers
             return resources;
         }
 
+        [HttpGet]
+        public async Task<IEnumerable<ProductResource>> ListAsync(int? categoryId) {
+            var products = await _productService.ListAsync(categoryId);
+            var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
+            return resources;
+        }
+
         /// <summary>
         /// Saves a new product.
         /// </summary>

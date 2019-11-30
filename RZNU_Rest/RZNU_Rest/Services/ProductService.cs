@@ -41,6 +41,11 @@ namespace RZNU_Rest.Services
             return await _productRepository.ListAsync();
         }
 
+        public Task<IEnumerable<Product>> ListAsync(int? categoryId)
+        {
+            return _productRepository.ListAsync(categoryId);
+        }
+
         public async Task<ProductResponse> SaveAsync(Product product)
         {
             try
