@@ -1,31 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Principal;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using System.Text;
+
+
+
 
 namespace RZNU_Rest.Authentication
 {
     public class BasicAuthenticationAttribute : AuthorizationFilterAttribute
-    {
+    {  
+
         public override void OnAuthorization(HttpActionContext actionContext) {
 
-            if (actionContext.Request.Headers.Authorization != null)
+             if (actionContext.Request.Headers.Authorization != null)
             {
                 var authToken = actionContext.Request.Headers.Authorization.Parameter;
 
-                var decodingToken = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(authToken));
+                var decodingToken = Encoding.UTF8.GetString(Convert.FromBase64String(authToken));
 
                 var arrUserNameAndPassword = decodingToken.Split(':');
-
-                if (IsAuthorizedUser(arrUserNameAndPassword[0], arrUserNameAndPassword[1]))
+                string username = arrUserNameAndPassword[0];
+                string password = arrUserNameAndPassword[1];
+                    
+                if (IsAuthorizedUser(username, password))
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(arrUserNameAndPassword[0]), null);
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null);
+                    
                 }
                 else
                 {
@@ -37,7 +42,7 @@ namespace RZNU_Rest.Authentication
             }
         }
 
-        private bool IsAuthorizedUser(string username, string password)
+        public bool IsAuthorizedUser(string username, string password)
         {
             return username == "nmotocic" && password == "1234";
         }

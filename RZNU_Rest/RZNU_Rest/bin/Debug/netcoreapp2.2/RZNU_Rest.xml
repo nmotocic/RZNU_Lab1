@@ -33,7 +33,7 @@
             <param name="id">Category identifier.</param>
             <returns>Response for the request.</returns>
         </member>
-        <member name="M:RZNU_Rest.Controllers.ProductController.ListAsync">
+        <member name="M:RZNU_Rest.Controllers.ProductController.GetAsync">
             <summary>
             Lists all existing products.
             </summary>

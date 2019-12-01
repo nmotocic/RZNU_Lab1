@@ -26,7 +26,7 @@ namespace RZNU_Rest.Persistence.Repositories
 
         public async Task<IEnumerable<Product>> ListAsync()
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
         public async Task<IEnumerable<Product>> ListAsync(int? categoryId)

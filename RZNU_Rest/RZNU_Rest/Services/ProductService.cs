@@ -46,7 +46,7 @@ namespace RZNU_Rest.Services
             return _productRepository.ListAsync(categoryId);
         }
 
-        public async Task<ProductResponse> SaveAsync(Product product)
+        public async Task<ProductResponse> SaveAsync(int id, Product product)
         {
             try
             {
@@ -61,6 +61,8 @@ namespace RZNU_Rest.Services
                 return new ProductResponse($"An error has occured when saving the product: {ex.Message}");
             }
         }
+
+        
 
         public async Task<ProductResponse> UpdateAsync(int id, Product product)
         {
@@ -83,5 +85,7 @@ namespace RZNU_Rest.Services
                 return new ProductResponse($"An error has occured when updating the product: {ex.Message}");
             }
         }
+
+        
     }
 }
