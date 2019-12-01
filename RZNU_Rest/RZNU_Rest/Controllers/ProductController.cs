@@ -8,6 +8,7 @@ using AutoMapper;
 using RZNU_Rest.Services;
 using RZNU_Rest.Resources;
 using RZNU_Rest.Models;
+using RZNU_Rest.Authentication;
 
 namespace RZNU_Rest.Controllers
 {
@@ -31,13 +32,15 @@ namespace RZNU_Rest.Controllers
         /// </summary>
         /// <returns>List of products.</returns>
         [HttpGet]
+        [BasicAuthentication]
         public async Task<IEnumerable<ProductResource>> ListAsync() {
             var products = await _productService.ListAsync();
             var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
             return resources;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
+        [BasicAuthentication]
         public async Task<IEnumerable<ProductResource>> ListAsync(int? categoryId) {
             var products = await _productService.ListAsync(categoryId);
             var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
@@ -51,6 +54,7 @@ namespace RZNU_Rest.Controllers
         /// <param name="resource">Product data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPost]
+        [BasicAuthentication]
         public async Task<IActionResult> PostAsync(int id, [FromBody] SaveProductResource resource) {
             var product = _mapper.Map<SaveProductResource, Product>(resource);
             var result = await _productService.UpdateAsync(id, product);
@@ -68,6 +72,7 @@ namespace RZNU_Rest.Controllers
         /// <param name="resource">Product data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPut("{id}")]
+        [BasicAuthentication]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource) {
             var product = _mapper.Map<SaveProductResource, Product>(resource);
             var result = await _productService.UpdateAsync(id, product);
@@ -83,6 +88,7 @@ namespace RZNU_Rest.Controllers
         /// <param name="id">Product identifier.</param>
         /// <returns>Response for the request.</returns>
         [HttpDelete("{id}")]
+        [BasicAuthentication]
         public async Task<IActionResult> DeleteAsync(int id) {
             var result = await _productService.DeleteAsync(id);
             if (!result.Success) return BadRequest(result.Message);

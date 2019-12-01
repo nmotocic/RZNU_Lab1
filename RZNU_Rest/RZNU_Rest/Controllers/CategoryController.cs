@@ -9,6 +9,7 @@ using RZNU_Rest.Resources;
 using RZNU_Rest.Services;
 using AutoMapper;
 using RZNU_Rest.Extensions;
+using RZNU_Rest.Authentication;
 
 namespace RZNU_Rest.Controllers
 {
@@ -31,6 +32,7 @@ namespace RZNU_Rest.Controllers
         /// </summary>
         /// <returns>List of categories.</returns>
         [HttpGet]
+        [BasicAuthentication]
         public async Task<IEnumerable<CategoryResource>> GetAllAsync() {
             var categories = await _categoryService.ListAsync();
             var resources = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryResource>>(categories);
@@ -46,6 +48,7 @@ namespace RZNU_Rest.Controllers
         /// <param name="resource">Category data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPost]
+        [BasicAuthentication]
         public async Task<IActionResult> PostAsync([FromBody] SaveCategoryResource resource) {
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState.GetErrorMessages());
@@ -67,6 +70,7 @@ namespace RZNU_Rest.Controllers
         /// <param name="resource">Category data.</param>
         /// <returns>Response for the request.</returns>
         [HttpPut("{id}")]
+        [BasicAuthentication]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCategoryResource resource) {
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState.GetErrorMessages());
@@ -87,6 +91,7 @@ namespace RZNU_Rest.Controllers
         /// <param name="id">Category identifier.</param>
         /// <returns>Response for the request.</returns>
         [HttpDelete("{id}")]
+        [BasicAuthentication]
         public async Task<IActionResult> DeleteAsync(int id) {
             var result = await _categoryService.DeleteAsync(id);
             if (!result.Success) return BadRequest(result.Message);
