@@ -8,9 +8,9 @@ F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\bin\Debug\netcoreapp2.2\RZNU_Rest.deps.j
 F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\bin\Debug\netcoreapp2.2\RZNU_Rest.runtimeconfig.json
 F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\bin\Debug\netcoreapp2.2\RZNU_Rest.runtimeconfig.dev.json
 F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\bin\Debug\netcoreapp2.2\RZNU_Rest.dll
-F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.RazorTargetAssemblyInfo.cache
 F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\bin\Debug\netcoreapp2.2\RZNU_Rest.pdb
-F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.dll
-F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.pdb
 F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\bin\Debug\netcoreapp2.2\RZNU_Rest.xml
+F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.RazorTargetAssemblyInfo.cache
+F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.dll
 F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.xml
+F:\GitHub\RZNU_Lab1\RZNU_Rest\RZNU_Rest\obj\Debug\netcoreapp2.2\RZNU_Rest.pdb

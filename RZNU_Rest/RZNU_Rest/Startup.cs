@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using RZNU_Rest.Authentication;
 using RZNU_Rest.Persistence.Contexts;
 using RZNU_Rest.Persistence.Repositories;
 using RZNU_Rest.Repositories;
@@ -73,6 +74,9 @@ namespace RZNU_Rest
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseMiddleware<AuthenticationMiddleware>();
+
 
             app.UseHttpsRedirection();
             app.UseMvc();

@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RZNU_Rest.Models;
+﻿using RZNU_Rest.Models;
 using RZNU_Rest.Resources;
 using RZNU_Rest.Services;
-using AutoMapper;
 using RZNU_Rest.Extensions;
 using RZNU_Rest.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace RZNU_Rest.Controllers
 {
 
-    
+
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
-    
+    //[BasicAuthentication]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;

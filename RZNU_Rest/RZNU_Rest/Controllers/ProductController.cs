@@ -12,7 +12,7 @@ namespace RZNU_Rest.Controllers
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
-    [BasicAuthentication]
+   // [BasicAuthentication]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
